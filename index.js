@@ -18,7 +18,7 @@ app.enable("trust proxy");
 app.use(express.urlencoded({extended:true}));
 app.use(express.static(__dirname + '/public'));
 app.use(express.json());
-app,use(cors());
+//app,use(cors());
 //app.use("/api", routes);
 
 app.set('view engine','ejs');
@@ -29,6 +29,13 @@ app.get("/", (req, res) => {
     res.send(data);
   });
   
+});
+
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin","*");
+  res.setHeader("Access-Control-Allow-Methods", "GET,POST,PUT,PATCH,DELETE");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  next();
 });
 
 app.use(function (err, req, res, next) {
