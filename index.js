@@ -2,6 +2,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const db = require("./models/model");
+const cors = require("cors");
 
 dotenv.config({ path: "./config.env" });
 
@@ -18,7 +19,8 @@ app.enable("trust proxy");
 app.use(express.urlencoded({extended:true}));
 app.use(express.static(__dirname + '/public'));
 app.use(express.json());
-//app,use(cors());
+
+app.use(cors());
 //app.use("/api", routes);
 
 app.set('view engine','ejs');
